@@ -131,7 +131,7 @@ function Village() {
 
             const response = await fetch(
 
-                `http://localhost:5000/villages/get?village=${encodeURIComponent(village)}`
+                `https://haryana-village-portal.onrender.com/villages/get?village=${encodeURIComponent(village)}`
 
             );
 
@@ -179,7 +179,7 @@ function Village() {
 
             const response = await fetch(
 
-                "http://localhost:5000/villages/save",
+                "https://haryana-village-portal.onrender.com/villages/save",
 
                 {
 
