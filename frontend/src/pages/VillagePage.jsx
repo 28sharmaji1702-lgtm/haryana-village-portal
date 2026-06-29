@@ -1,55 +1,52 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import villages302 from "../data/villages/302";
-
 function VillagePage() {
   const { code } = useParams();
 
-  const village = villages302.find((v) => v.code === code);
-
-  const [link, setLink] = useState("");
+  const [village, setVillage] = useState(null);
+  const [googleMapLink, setGoogleMapLink] = useState("");
 
   useEffect(() => {
-    if (!village) return;
-
-    async function loadLink() {
-      console.log("Loading for:", village.name);
-
+    async function loadVillage() {
       try {
-        const response = await fetch(
-          `http://localhost:5000/villages/get?village=${encodeURIComponent(
-            village.name
-          )}`
-        );
+        // Local village data
+        const modules = import.meta.glob("../data/villages/*.js");
 
-        console.log("HTTP Status:", response.status);
+        for (const path in modules) {
+          const mod = await modules[path]();
+          const found = mod.default.find((v) => v.code === code);
 
-        const data = await response.json();
+          if (found) {
+            setVillage(found);
 
-        console.log("Response:", data);
+            // Load saved link from backend
+            const res = await fetch(
+              `https://haryana-village-portal.onrender.com/villages/get?village=${encodeURIComponent(
+                found.name
+              )}`
+            );
 
-        if (data.google_map_link) {
-          setLink(data.google_map_link);
-        } else {
-          setLink("");
+            const data = await res.json();
+
+            setGoogleMapLink(data.google_map_link || "");
+
+            return;
+          }
         }
       } catch (err) {
         console.error(err);
-        setLink("");
       }
     }
 
-    // IMPORTANT: Actually call the function
-    loadLink();
-  }, [village]);
+    loadVillage();
+  }, [code]);
 
   if (!village) {
     return (
       <div style={{ padding: 40 }}>
         <h2>Village Not Found</h2>
-
-        <Link to="/">Back</Link>
+        <Link to="/">← Back</Link>
       </div>
     );
   }
@@ -64,13 +61,15 @@ function VillagePage() {
     >
       <h1>{village.name}</h1>
 
-      <h3>Charkhi Dadri • Badhra</h3>
+      <h3>
+        {village.district} • {village.tehsil}
+      </h3>
 
       <br />
 
-      {link ? (
+      {googleMapLink ? (
         <a
-          href={link}
+          href={googleMapLink}
           target="_blank"
           rel="noreferrer"
           style={{
@@ -82,7 +81,7 @@ function VillagePage() {
             textDecoration: "none",
           }}
         >
-          🗺️ Open {village.name} Shajra
+          🗺 Open {village.name} Shajra
         </a>
       ) : (
         <button disabled>Coming Soon</button>
