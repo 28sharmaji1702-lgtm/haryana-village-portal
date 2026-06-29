@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "../styles/Admin.css";
+import "../styles/admin.css";
 
 function Login() {
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import districts from "../data/districts";
 import tehsils from "../data/tehsils";
 
-import "../styles/Admin.css";
+import "../styles/admin.css";
 
 function Village() {
 
