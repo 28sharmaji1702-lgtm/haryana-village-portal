@@ -1,71 +1,61 @@
-import { useState } from "react";
-import tehsils from "../data/tehsils";
-import "../styles/TehsilDropdown.css";
-
-function TehsilDropdown({
-  selectedDistrict,
-  selectedTehsil,
-  setSelectedTehsil,
-}) {
-  const [open, setOpen] = useState(false);
-
-  const filteredTehsils = selectedDistrict
-    ? tehsils.filter(
-        (t) => Number(t.districtId) === Number(selectedDistrict.id)
-      )
-    : [];
-
-  const handleSelect = (tehsil) => {
-    setSelectedTehsil(tehsil);
-    setOpen(false);
-  };
-
-  return (
-    <div className="dropdown-container">
-      <label className="dropdown-label">Tehsil</label>
-
-      <button
-        className="dropdown-button"
-        onClick={() => {
-          if (selectedDistrict) setOpen(!open);
-        }}
-      >
-        <span>
-          {selectedTehsil
-            ? selectedTehsil.name
-            : selectedDistrict
-            ? "Select Tehsil"
-            : "Select District First"}
-        </span>
-
-        {selectedDistrict && (
-          <span className={`arrow ${open ? "rotate" : ""}`}>
-            ▼
-          </span>
-        )}
-      </button>
-
-      {open && (
-        <div className="dropdown-menu">
-          {filteredTehsils.length > 0 ? (
-            filteredTehsils.map((tehsil) => (
-              <div
-                key={tehsil.id}
-                className="dropdown-item"
-                onClick={() => handleSelect(tehsil)}
-              >
-                {tehsil.name}
-              </div>
-            ))
-          ) : (
-            <div className="dropdown-item">
-              No Tehsils Found
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
+.dropdown-container{
+    margin-bottom:30px;
+    position:relative;
 }
 
-export default TehsilDropdown;
+.dropdown-label{
+    display:block;
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+    color:#374151;
+}
+
+.dropdown-button{
+    width:100%;
+    background:#fff;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    padding:16px 18px;
+    font-size:17px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.dropdown-button:hover{
+    border-color:#0f766e;
+}
+
+.dropdown-menu{
+    position:absolute;
+    width:100%;
+    background:#fff;
+    border-radius:12px;
+    margin-top:8px;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+    max-height:280px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    z-index:100;
+}
+
+.dropdown-item{
+    padding:15px 18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.dropdown-item:hover{
+    background:#ecfdf5;
+}
+
+.arrow{
+    transition:.25s;
+}
+
+.rotate{
+    transform:rotate(180deg);
+}
