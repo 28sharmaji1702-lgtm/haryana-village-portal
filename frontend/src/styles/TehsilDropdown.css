@@ -13,7 +13,7 @@
 
 .dropdown-button{
     width:100%;
-    background:#fff;
+    background:#ffffff;
     border:1px solid #d1d5db;
     border-radius:12px;
     padding:16px 18px;
@@ -22,7 +22,7 @@
     justify-content:space-between;
     align-items:center;
     cursor:pointer;
-    transition:.25s;
+    transition:0.25s;
 }
 
 .dropdown-button:hover{
@@ -31,10 +31,12 @@
 
 .dropdown-menu{
     position:absolute;
+    top:100%;
+    left:0;
     width:100%;
-    background:#fff;
-    border-radius:12px;
     margin-top:8px;
+    background:#ffffff;
+    border-radius:12px;
     box-shadow:0 12px 30px rgba(0,0,0,.15);
     max-height:280px;
     overflow-y:auto;
@@ -45,7 +47,7 @@
 .dropdown-item{
     padding:15px 18px;
     cursor:pointer;
-    transition:.2s;
+    transition:0.2s;
 }
 
 .dropdown-item:hover{
@@ -53,7 +55,7 @@
 }
 
 .arrow{
-    transition:.25s;
+    transition:0.25s;
 }
 
 .rotate{

@@ -11,17 +11,17 @@ function TehsilDropdown({
 
   const filteredTehsils = selectedDistrict
     ? tehsils.filter(
-        (tehsil) => tehsil.districtId === selectedDistrict.id
+        (t) => Number(t.districtId) === Number(selectedDistrict.id)
       )
     : [];
 
-  const handleSelect = (tehsil) => {
+  function handleSelect(tehsil) {
     setSelectedTehsil(tehsil);
 
     localStorage.setItem("tehsilId", tehsil.id);
 
     setOpen(false);
-  };
+  }
 
   return (
     <div className="dropdown-container">
@@ -30,6 +30,7 @@ function TehsilDropdown({
       </label>
 
       <button
+        type="button"
         className="dropdown-button"
         onClick={() => {
           if (selectedDistrict) {
@@ -54,15 +55,21 @@ function TehsilDropdown({
 
       {open && (
         <div className="dropdown-menu">
-          {filteredTehsils.map((tehsil) => (
-            <div
-              key={tehsil.id}
-              className="dropdown-item"
-              onClick={() => handleSelect(tehsil)}
-            >
-              {tehsil.name}
+          {filteredTehsils.length > 0 ? (
+            filteredTehsils.map((tehsil) => (
+              <div
+                key={tehsil.id}
+                className="dropdown-item"
+                onClick={() => handleSelect(tehsil)}
+              >
+                {tehsil.name}
+              </div>
+            ))
+          ) : (
+            <div className="dropdown-item">
+              No Tehsils Found
             </div>
-          ))}
+          )}
         </div>
       )}
     </div>
