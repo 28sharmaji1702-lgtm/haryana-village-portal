@@ -8,4 +8,6 @@ router.post("/save", villageController.saveLink);
 
 router.get("/get", villageController.getLink);
 
+router.get("/list", villageController.getVillages);
+
 module.exports = router;

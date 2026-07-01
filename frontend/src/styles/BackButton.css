@@ -1,0 +1,87 @@
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 18px;
+
+    border:2px solid #16a34a;
+
+    background:#ffffff;
+
+    color:#166534;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+
+}
+
+.back-btn:hover{
+
+    background:#16a34a;
+
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(22,163,74,.18);
+
+}
+
+.back-btn:active{
+
+    transform:translateY(0);
+
+}
+
+.back-btn svg{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+.back-btn-container{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:20px auto 10px;
+
+    padding:0 20px;
+
+}
+
+@media(max-width:768px){
+
+.back-btn{
+
+    padding:9px 16px;
+
+    font-size:15px;
+
+}
+
+.back-btn-container{
+
+    padding:0 16px;
+
+}
+
+}

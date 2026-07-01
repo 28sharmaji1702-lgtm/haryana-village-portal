@@ -1,124 +1,162 @@
 import { useEffect, useState } from "react";
 
 import Header from "../components/Header";
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";
+import FilterSection from "../components/FilterSection";
 import SearchBar from "../components/SearchBar";
-import DistrictDropdown from "../components/DistrictDropdown";
-import TehsilDropdown from "../components/TehsilDropdown";
-import VillageList from "../components/VillageList";
+import TehsilCards from "../components/TehsilCards";
+import VillageGrid from "../components/VillageGrid";
+
+import "../styles/Home.css";
 
 import districts from "../data/districts";
 import tehsils from "../data/tehsils";
 
+import village301 from "../data/villages/301";
+import village302 from "../data/villages/302";
+import village303 from "../data/villages/303";
+
 function Home() {
-  const [selectedDistrict, setSelectedDistrict] = useState(null);
-  const [selectedTehsil, setSelectedTehsil] = useState(null);
-  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    const districtId = localStorage.getItem("districtId");
-    const tehsilId = localStorage.getItem("tehsilId");
-    const searchText = localStorage.getItem("searchText");
+    const [selectedDistrict, setSelectedDistrict] = useState(null);
 
-    if (districtId) {
-      const district = districts.find(
-        (d) => String(d.id) === districtId
-      );
+    const [selectedTehsil, setSelectedTehsil] = useState(null);
 
-      if (district) {
+    const [selectedVillage, setSelectedVillage] = useState(null);
+
+    const [search, setSearch] = useState("");
+
+    const [visibleCount, setVisibleCount] = useState(12);
+
+    const villages = [
+
+        ...village301,
+
+        ...village302,
+
+        ...village303
+
+    ];
+
+    useEffect(() => {
+
+        const district = districts.find(
+
+            d => d.name === "Charkhi Dadri"
+
+        );
+
         setSelectedDistrict(district);
-      }
-    }
 
-    if (tehsilId) {
-      const tehsil = tehsils.find(
-        (t) => String(t.id) === tehsilId
-      );
+    }, []);
 
-      if (tehsil) {
-        setSelectedTehsil(tehsil);
-      }
-    }
+    useEffect(() => {
 
-    if (searchText) {
-      setSearch(searchText);
-    }
-  }, []);
+        setVisibleCount(12);
 
-  useEffect(() => {
-    if (selectedDistrict) {
-      localStorage.setItem("districtId", selectedDistrict.id);
-    } else {
-      localStorage.removeItem("districtId");
-    }
-  }, [selectedDistrict]);
+    }, [selectedTehsil, search]);
 
-  useEffect(() => {
-    if (selectedTehsil) {
-      localStorage.setItem("tehsilId", selectedTehsil.id);
-    } else {
-      localStorage.removeItem("tehsilId");
-    }
-  }, [selectedTehsil]);
+    const openVillage = () => {
 
-  useEffect(() => {
-    localStorage.setItem("searchText", search);
-  }, [search]);
+        if (selectedVillage) {
 
-  return (
-    <>
-      <Header />
+            window.location.href = `/village/${selectedVillage.code}`;
 
-      <main
-        style={{
-          maxWidth: "1000px",
-          margin: "40px auto",
-          padding: "0 20px",
-        }}
-      >
-        <div
-          style={{
-            background: "#fff",
-            borderRadius: "15px",
-            padding: "35px",
-            boxShadow: "0 5px 20px rgba(0,0,0,.08)",
-          }}
-        >
-          <h1>Browse Haryana Villages</h1>
+        }
 
-          <p
-            style={{
-              color: "#6b7280",
-              marginBottom: "25px",
-            }}
-          >
-            Select District → Tehsil → Village
-          </p>
+    };
 
-          <SearchBar
-            search={search}
-            setSearch={setSearch}
-          />
+    return (
 
-          <DistrictDropdown
-            selectedDistrict={selectedDistrict}
-            setSelectedDistrict={setSelectedDistrict}
-            setSelectedTehsil={setSelectedTehsil}
-          />
+        <>
 
-          <TehsilDropdown
-            selectedDistrict={selectedDistrict}
-            selectedTehsil={selectedTehsil}
-            setSelectedTehsil={setSelectedTehsil}
-          />
+            <Header />
 
-          <VillageList
-            selectedTehsil={selectedTehsil}
-            search={search}
-          />
-        </div>
-      </main>
-    </>
-  );
+            <Hero />
+
+            <main className="home-container">
+
+                <FilterSection
+
+                    districts={districts}
+
+                    tehsils={tehsils}
+
+                    villages={
+                        selectedTehsil
+                            ? villages.filter(
+                                village =>
+                                    village.tehsil === selectedTehsil.name
+                            )
+                            : villages
+                    }
+
+                    selectedDistrict={selectedDistrict}
+
+                    selectedTehsil={selectedTehsil}
+
+                    selectedVillage={selectedVillage}
+
+                    setSelectedDistrict={setSelectedDistrict}
+
+                    setSelectedTehsil={setSelectedTehsil}
+
+                    setSelectedVillage={setSelectedVillage}
+
+                    openVillage={openVillage}
+
+                />
+
+                <SearchBar
+
+                    search={search}
+
+                    setSearch={setSearch}
+
+                />
+                                <TehsilCards
+
+                    tehsils={tehsils}
+
+                    villages={villages}
+
+                    selectedDistrict={selectedDistrict}
+
+                    selectedTehsil={selectedTehsil}
+
+                    setSelectedTehsil={setSelectedTehsil}
+
+                    setSelectedVillage={setSelectedVillage}
+
+                    setVisibleCount={setVisibleCount}
+
+                    setSearch={setSearch}
+
+                />
+
+                <VillageGrid
+
+                    villages={villages}
+
+                    selectedTehsil={selectedTehsil}
+
+                    visibleCount={visibleCount}
+
+                    setVisibleCount={setVisibleCount}
+
+                    search={search}
+
+                />
+
+            </main>
+
+            <Footer />
+
+        </>
+
+    );
+
 }
 
 export default Home;

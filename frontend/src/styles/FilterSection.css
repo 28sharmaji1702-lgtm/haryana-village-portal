@@ -1,0 +1,175 @@
+.filter-card{
+
+    background:#ffffff;
+
+    margin-top:35px;
+
+    border-radius:24px;
+
+    padding:38px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+.filter-card h2{
+
+    margin:0 0 32px;
+
+    color:#166534;
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+.filter-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    align-items:end;
+
+}
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.field label{
+
+    margin-bottom:10px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+.field select{
+
+    height:60px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:14px;
+
+    padding:0 18px;
+
+    font-size:17px;
+
+    background:#fff;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+.field select:hover{
+
+    border-color:#22c55e;
+
+}
+
+.field select:focus{
+
+    border-color:#16a34a;
+
+    box-shadow:0 0 0 3px rgba(22,163,74,.15);
+
+}
+
+.view-btn{
+
+    height:60px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#16a34a;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.view-btn:hover{
+
+    background:#15803d;
+
+    transform:translateY(-2px);
+
+}
+
+@media(max-width:1100px){
+
+.filter-grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.filter-card{
+
+padding:24px;
+
+margin-top:20px;
+
+}
+
+.filter-card h2{
+
+font-size:34px;
+
+margin-bottom:22px;
+
+}
+
+.filter-grid{
+
+grid-template-columns:1fr;
+
+gap:18px;
+
+}
+
+.field select{
+
+height:56px;
+
+font-size:16px;
+
+}
+
+.view-btn{
+
+height:56px;
+
+font-size:17px;
+
+}
+
+}

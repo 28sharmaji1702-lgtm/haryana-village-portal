@@ -26,7 +26,7 @@ const tehsils = [
   // ==========================
   { id: 301, districtId: 3, name: "Charkhi Dadri" },
   { id: 302, districtId: 3, name: "Badhra" },
-  { id: 303, districtId: 3, name: "Baund Kalan" },
+  { id: 303, districtId: 3, name: "Bond Kalan" },
 
   // ==========================
   // Faridabad (District ID: 4)

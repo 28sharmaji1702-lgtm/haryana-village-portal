@@ -1,60 +1,125 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import "../styles/About.css";
 
 function About() {
-  return (
-    <>
-      <Header />
 
-      <div
-        style={{
-          maxWidth: "900px",
-          margin: "50px auto",
-          background: "#fff",
-          padding: "40px",
-          borderRadius: "12px",
-          boxShadow: "0 5px 20px rgba(0,0,0,.08)",
-          lineHeight: "1.8",
-        }}
-      >
-        <h1 style={{ color: "#0f766e" }}>
-          About Haryana Village Portal
-        </h1>
+    return (
 
-        <p>
-          Haryana Village Portal is a digital platform developed to provide
-          quick and easy access to village-wise Digital Shajra Maps across
-          Haryana.
-        </p>
+        <>
 
-        <p>
-          The objective of this portal is to make Digital Shajra maps
-          available from a single platform so that users can quickly find
-          and open the required village Shajra without searching through
-          multiple sources.
-        </p>
+            <Header />
 
-        <p>
-          Whether you are a landowner, student, surveyor, advocate,
-          government employee or simply looking for a village Shajra,
-          this portal offers a fast, simple and convenient experience.
-        </p>
+            <section className="about-hero">
 
-        <h3 style={{ color: "#0f766e" }}>
-          Available Feature
-        </h3>
+                <div className="about-overlay">
 
-        <ul>
-          <li>✔ Village-wise Digital Shajra Maps</li>
-        </ul>
+                    <h1>
 
-        <p>
-          Our goal is to make Digital Shajra maps easily accessible for
-          every village of Haryana through one simple and user-friendly
-          platform.
-        </p>
-      </div>
-    </>
-  );
+                        About Haryana Village
+                        <br />
+                        Digital Shajra
+
+                    </h1>
+
+                    <p>
+
+                        A simple platform to access Digital Shajra Maps
+                        and village information across Haryana.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <main className="about-container">
+
+                <div className="about-card">
+
+                    <h2>
+
+                        About the Portal
+
+                    </h2>
+
+                    <p>
+
+                        Haryana Village Digital Shajra is a simple and user-friendly
+                        platform developed to help users quickly access village-wise
+                        Digital Shajra Maps across Haryana from a single place.
+
+                    </p>
+
+                    <p>
+
+                        The portal allows users to browse districts, tehsils and
+                        villages without navigating multiple websites, making the
+                        process faster and more convenient.
+
+                    </p>
+
+                    <h3>
+
+                        Features
+
+                    </h3>
+
+                    <ul>
+
+                        <li>Village-wise Digital Shajra Maps</li>
+
+                        <li>District & Tehsil Based Browsing</li>
+
+                        <li>Quick Village Search</li>
+
+                        <li>Mobile Friendly Interface</li>
+
+                        <li>Simple & Easy Navigation</li>
+
+                    </ul>
+
+                    <h3>
+
+                        Disclaimer
+
+                    </h3>
+
+                    <p>
+
+                        This website is created only for educational,
+                        informational and public convenience purposes.
+                        The information provided should not be treated as
+                        an official land record. Users are advised to verify
+                        all records from the concerned Government Department
+                        before taking any legal or official action.
+
+                    </p>
+
+                    <h3>
+
+                        Developed For
+
+                    </h3>
+
+                    <p>
+
+                        Haryana Village Digital Shajra aims to provide a
+                        fast, clean and convenient way to access Digital
+                        Shajra Maps for villages across Haryana.
+
+                    </p>
+
+                </div>
+
+            </main>
+
+            <Footer />
+
+        </>
+
+    );
+
 }
 
 export default About;
